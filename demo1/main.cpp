@@ -214,6 +214,8 @@ int main(int argc, char* argv[]) {
             sum_diff2 += diff.dot(diff);
         }
     }
+	
+	// this is test the git fetch order
 
     //
     if (STRUCTURE_ONLY){
