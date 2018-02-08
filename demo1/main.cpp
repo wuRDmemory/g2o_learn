@@ -213,6 +213,8 @@ int main(int argc, char* argv[]) {
             sum_diff2 += diff.dot(diff);
         }
     }
+	
+	// this is test the git fetch order
 
     // 输出优化前的误差
     std::cout<<"优化前： 误差为"<<sum_diff2/inliers.size()<<endl;
