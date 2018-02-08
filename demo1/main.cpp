@@ -68,6 +68,7 @@ public:
     }
 };
 
+int STRUCTURE_ONLY = 0;
 
 // 主函数
 int main(int argc, char* argv[]) {
@@ -212,6 +213,19 @@ int main(int argc, char* argv[]) {
             diff -= truePoints[i];
             sum_diff2 += diff.dot(diff);
         }
+    }
+
+    //
+    if (STRUCTURE_ONLY){
+        g2o::StructureOnlySolver<3> structure_only_ba;
+        cout << "Performing structure-only BA:"   << endl;
+        g2o::OptimizableGraph::VertexContainer points;
+        for (g2o::OptimizableGraph::VertexIDMap::const_iterator it = optimizer.vertices().begin(); it != optimizer.vertices().end(); ++it) {
+            g2o::OptimizableGraph::Vertex* v = static_cast<g2o::OptimizableGraph::Vertex*>(it->second);
+            if (v->dimension() == 3)
+                points.push_back(v);
+        }
+        structure_only_ba.calc(points, 10);
     }
 
     // 输出优化前的误差
